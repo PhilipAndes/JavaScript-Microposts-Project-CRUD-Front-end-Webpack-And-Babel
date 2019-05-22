@@ -13,6 +13,9 @@ document.querySelector('#posts').addEventListener('click', deletePost);
 // Listen for edit state
 document.querySelector('#posts').addEventListener('click', enableEdit);
 
+// Listen for Cancel Edit
+document.querySelector('.card-form').addEventListener('click', cancelEdit);
+
 // Get Posts
 function getPosts() {
   http.get('http://localhost:3000/posts')
@@ -24,20 +27,39 @@ function getPosts() {
 function submitPost() {
   const title = document.querySelector('#title').value;
   const body = document.querySelector('#body').value;
+  const id = document.querySelector('#id').value;
 
   const data = {
     title, 
     body
   }
 
-  // Create Post
-  http.post('http://localhost:3000/posts', data)
-  .then(data => {
-    ui.showAlert('Post Added', 'alert alert-success');
-    ui.clearFields();
-    getPosts();
-  })
-  .catch(err => console.log(err));
+  // Validate Input:
+  // If fields are empty:
+  if(title === '' || body === '') {
+    ui.showAlert('Please fill in all fields', 'alert alert-danger');
+  } else {
+    // Check for ID
+    if (id === '') {
+      // Create Post
+      http.post('http://localhost:3000/posts', data)
+      .then(data => {
+        ui.showAlert('Post Added', 'alert alert-success');
+        ui.clearFields();
+        getPosts();
+      })
+      .catch(err => console.log(err));
+    } else {
+      // Update the Post with put:
+      http.put(`http://localhost:3000/posts/${id}`, data)
+      .then(data => {
+        ui.showAlert('Post Updated', 'alert alert-success');
+        ui.changeFormState('add');
+        getPosts();
+      })
+      .catch(err => console.log(err));
+    }
+  }
 }
 
 // Delete Post
@@ -82,5 +104,16 @@ function enableEdit(e) {
     // Fill form with current post
     ui.fillForm(data);
   }
+  e.preventDefault();
+}
+
+// Cancel Edit State
+function cancelEdit(e) {
+  // Target the cancel button
+  if(e.target.classList.contains('post-cancel')){
+    // Change it back to the add state
+    ui.changeFormState('add');
+  }
+
   e.preventDefault();
 }

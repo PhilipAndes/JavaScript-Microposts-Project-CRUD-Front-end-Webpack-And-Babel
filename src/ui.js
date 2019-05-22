@@ -78,6 +78,48 @@ class UI {
         this.titleInput.value = data.title;
         this.bodyInput.value = data.body;
         this.idInput.value =  data.id;
+
+        // Before we put the data into the form we want to call a function:
+        this.changeFormState('edit');
+    }
+
+    // Clear ID hidden value
+    clearIdInput() {
+        this.idInput.value = '';
+    }
+
+    // Change the Form State
+    changeFormState(type) {
+        if(type === 'edit') {
+            // Change the button text to Update Post
+            this.postSubmit.textContent = 'Update Post';
+            // Change the btn-primary to btn-warning but:
+            // Because className is the entire string of classes we have to call them all again:
+            this.postSubmit.className = 'post-submit btn btn-warning btn-block';
+
+            // Create cancel button to cancel the edit state:
+            const button = document.createElement('button');
+            button.className = 'post-cancel btn btn-light btn-block';
+            button.appendChild(document.createTextNode('Cancel Edit'));
+
+            // Insert button to the DOM (get the parent which is the card-form)
+            const cardForm = document.querySelector('.card-form');
+            // Get the element to insert before
+            const formEnd = document.querySelector('.form-end');
+            // Insert the cancel button:
+            cardForm.insertBefore(button, formEnd);
+        } else {
+            this.postSubmit.textContent = 'Post It';
+            this.postSubmit.className = 'post-submit btn btn-primary btn-block';
+            // Remove cancel button if it is there
+            if(document.querySelector('.post-cancel')) {
+                document.querySelector('.post-cancel').remove();
+            }
+            // Clear ID from the hidden field
+            this.clearIdInput();
+            // Clear text fields:
+            this.clearFields();
+        }
     }
 }
 
