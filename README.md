@@ -11,6 +11,7 @@
 - Get & Display Posts
 - Bootstrap theme + custom css file
 - Add Posts & Show Alert
+- Removing Posts
 
 # Babel Webpack Starter
 
