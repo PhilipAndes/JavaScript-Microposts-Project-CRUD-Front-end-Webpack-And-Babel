@@ -9,6 +9,7 @@
 - Modules
 - Fake REST API using JSON Server
 - Get & Display Posts
+- Bootstrap theme + custom css file
 
 # Babel Webpack Starter
 
