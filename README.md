@@ -1,3 +1,14 @@
+# JavaScript Microposts Project 
+
+- Started Coding: December 2018.
+
+- A JavaScript Project from a Udemy course.
+
+<b>This project contains:</b>
+- Babel & Webpack Environment Setup
+- Modules
+- Fake REST API using JSON Server
+
 # Babel Webpack Starter
 
 A starter pack to build JavaScript applications using standards from ES2015, ES2016 & ES2017. It uses webpack, Babel and webpack-dev-server to compile and serve. It is fully compatible with Async/Await as it uses the Babel polyfill.
