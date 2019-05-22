@@ -13,6 +13,7 @@
 - Add Posts & Show Alert
 - Removing Posts
 - Post Edit State & Update
+- Change buttons in Edit state
 
 # Babel Webpack Starter
 

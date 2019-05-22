@@ -10,6 +10,9 @@ document.querySelector('.post-submit').addEventListener('click', submitPost);
 // Listen for delete
 document.querySelector('#posts').addEventListener('click', deletePost);
 
+// Listen for edit state
+document.querySelector('#posts').addEventListener('click', enableEdit);
+
 // Get Posts
 function getPosts() {
   http.get('http://localhost:3000/posts')
@@ -57,4 +60,27 @@ function deletePost(e) {
         .catch(err => console.log(err));
     }
   }
+}
+
+// Enable Sdit State
+function enableEdit(e) {
+  // We have to go to the parent again:
+  if(e.target.parentElement.classList.contains('edit')) {
+    // if so then we want to get all the post info, and we can get that through the target
+    const id = e.target.parentElement.dataset.id;
+    // We also need to get the title and body:
+    const title = e.target.parentElement.previousElementSibling.previousElementSibling.textContent;
+    const body = e.target.parentElement.previousElementSibling.textContent;
+
+    // Lets create a data var and put all this stuff in it:
+    const data = {
+      id,
+      title,
+      body
+    }
+
+    // Fill form with current post
+    ui.fillForm(data);
+  }
+  e.preventDefault();
 }
