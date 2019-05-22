@@ -10,6 +10,7 @@
 - Fake REST API using JSON Server
 - Get & Display Posts
 - Bootstrap theme + custom css file
+- Add Posts & Show Alert
 
 # Babel Webpack Starter
 
