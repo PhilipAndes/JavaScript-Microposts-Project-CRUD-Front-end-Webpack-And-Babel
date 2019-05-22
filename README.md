@@ -4,10 +4,11 @@
 
 - A JavaScript Project from a Udemy course.
 
-<b>This project contains:</b>
+<b>In This Project:</b>
 - Babel & Webpack Environment Setup
 - Modules
 - Fake REST API using JSON Server
+- Get & Display Posts
 
 # Babel Webpack Starter
 
